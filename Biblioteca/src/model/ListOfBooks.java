@@ -14,12 +14,12 @@ public class ListOfBooks {
 	
 	// incluirNoInicio(Livro) inclui um Livro no início da lista
 	public void includeUp (Book livro) {
-		
+		this.listOfBooks.add(0, livro);
 	}
 	
 	// incluirNoFim(Livro) incluir um Livro no final da lista
 	public void includeDown (Book livro) {
-		
+		this.listOfBooks.add(livro);
 	}
 	
 	// ordenar() ordena os objetos Livro presentes na lista em ordem alfabética de título
