@@ -15,6 +15,9 @@ public class Book {
 		this.editora = editora;
 		this.anoPublicacao = anoPublicacao;
 	}
+	public Book() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getTitle() {
 		return title;
 	}
@@ -45,6 +48,5 @@ public class Book {
 	public void setAnoPublicacao(String anoPublicacao) {
 		this.anoPublicacao = anoPublicacao;
 	}
-	
 	
 }
