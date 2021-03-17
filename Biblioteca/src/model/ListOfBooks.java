@@ -14,21 +14,22 @@ public class ListOfBooks {
 	
 	// incluirNoInicio(Livro) inclui um Livro no início da lista
 	public void includeUp (Book livro) {
-		
+		this.listOfBooks.add(0, livro);
 	}
 	
 	// incluirNoFim(Livro) incluir um Livro no final da lista
 	public void includeDown (Book livro) {
-		
+		this.listOfBooks.add(livro);
 	}
 	
 	// ordenar() ordena os objetos Livro presentes na lista em ordem alfabética de título
 	public void sortByAlphabet() {
-		
+	
 	}
 	//Livro removerDoFim() remove um Livro do final da lista e o retorna
 	public Book removeEnd() {
-		 return null;
+		Book livro=this.listOfBooks.remove(this.sizeOfLibrary()-1);
+		return livro;
 	}
 	//int tamanho() retorna a quantidade de livros na lista
 	public int sizeOfLibrary() {
