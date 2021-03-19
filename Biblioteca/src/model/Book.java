@@ -15,6 +15,7 @@ public class Book {
 		this.editora = editora;
 		this.anoPublicacao = anoPublicacao;
 	}
+	
 	public Book() {
 		// TODO Auto-generated constructor stub
 	}
