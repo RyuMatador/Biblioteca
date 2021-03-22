@@ -1,6 +1,6 @@
 package model;
 
-public class Book {
+public class Book implements Comparable<Book>{
 	private String title;
 	private String isbn;
 	private Author author;
@@ -17,8 +17,9 @@ public class Book {
 	}
 	
 	public Book() {
-		// TODO Auto-generated constructor stub
+	
 	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -48,6 +49,16 @@ public class Book {
 	}
 	public void setAnoPublicacao(String anoPublicacao) {
 		this.anoPublicacao = anoPublicacao;
+	}
+	
+	@Override
+	public String toString() {
+		return "Livro [title=" + title + ", isbn=" + isbn + ", authorName=" + this.author.getName() + "," + "authorCountry" + "," + this.author.getCountry() + "," + "editora=" + editora
+				+ ", anoPublicacao=" + anoPublicacao + "]";
+	}
+	@Override
+	public int compareTo(Book o) {
+		return this.author.getName().compareTo(o.getAuthor().getName());
 	}
 	
 }

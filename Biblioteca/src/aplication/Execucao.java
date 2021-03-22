@@ -6,11 +6,13 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import model.Author;
 import model.Book;
 
 public class Execucao {
 	public static Scanner in = new Scanner(System.in);
 	private static ArrayList<Book> listOfBooks = new ArrayList<Book>();
+
 
 	public ArrayList<Book> getListOfBooks() {
 		return listOfBooks;
@@ -31,13 +33,9 @@ public class Execucao {
 	}
 	
 	// ordenar() ordena os objetos Livro presentes na lista em ordem alfabética de título
-/*	public void sortByAlphabet() {
-		for (Book book : listOfBooks) {
-			Collections.sort(book.getTitle());
-		}
-		
+	public void sortByAlphabet() {
+		Collections.sort(listOfBooks);				
 	}
-*/
 	//Livro removerDoFim() remove um Livro do final da lista e o retorna
 	public static Book removeEnd() {
 		Book livro=listOfBooks.remove(sizeOfLibrary()-1);
@@ -50,12 +48,19 @@ public class Execucao {
 		return sizeOfLibrary;
 	}
 	
+	public static void mostraBiblioteca() {
+		for (Book book : listOfBooks) {
+			System.out.println(book.toString());
+		}
+	}
 	//Livro get(int) retorna o Livro que está na posição da lista indicada no argumento
 	public static Book get(int book) {
 		Book livroId = listOfBooks.get(book);
 		return livroId;
 		
 	}
+	
+	
 	
 	public static void main(String[] args) {
 		System.out.println("Digite a escolha:");
@@ -70,6 +75,7 @@ public class Execucao {
 			System.out.println("|5-Tamanho da biblioteca                           |");
 			System.out.println("|6-Pesquisar um livro                              |");
 			System.out.println("|7-Sair                                            |");
+			System.out.println("|8-Mostrar Biblioteca                              |");
 			System.out.println("|__________________________________________________|");
 
 			int option = in.nextInt();
@@ -77,10 +83,9 @@ public class Execucao {
 			switch (option) {
 			case 1:
 				Book livro = new Book();
-				
 				System.out.println("Digite o Titulo, o nome do autor e seu estado, ano de publicação, editora e isbn");
 				livro.setTitle(in.next());
-				//livro.setAuthor(livro.getAuthor().setName(in.next()),livro.getAuthor().setCountry(in.next()));
+				livro.setAuthor(new Author(in.next(),in.next()));
 				livro.setAnoPublicacao(in.next());
 				livro.setEditora(in.next());
 				livro.setIsbn(in.next());
@@ -121,6 +126,10 @@ public class Execucao {
 			case 7:
 				System.out.println("Bye !");
 				choose = "n";
+				break;
+			case 8:
+				System.out.println("Aqui está sua biblioteca");
+				mostraBiblioteca();
 				break;
 			default:
 				System.out.println("Nao existe essa opção, digite uma opcao valida!");
