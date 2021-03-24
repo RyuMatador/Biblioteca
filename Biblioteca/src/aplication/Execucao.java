@@ -24,16 +24,31 @@ public class Execucao {
 	
 	// incluirNoInicio(Livro) inclui um Livro no início da lista
 	public static void includeUp (Book livro) {
+		System.out.println("Digite o Titulo, o nome do autor e seu estado, ano de publicação, editora e isbn");
+		livro.setTitle(in.next());
+		livro.setAuthor(new Author(in.next(),in.next()));
+		livro.setAnoPublicacao(in.next());
+		livro.setEditora(in.next());
+		livro.setIsbn(in.next());
 		listOfBooks.add(0, livro);
 	}
 	
 	// incluirNoFim(Livro) incluir um Livro no final da lista
 	public static void includeDown (Book livro) {
-		listOfBooks.add(livro);
+		System.out.println("Digite o Titulo, o nome do autor e seu estado, ano de publicação, editora e isbn");
+		livro.setTitle(in.next());
+		livro.setAuthor(new Author(in.next(),in.next()));
+		livro.setAnoPublicacao(in.next());
+		livro.setEditora(in.next());
+		livro.setIsbn(in.next());
+		for (int i = 0; i > listOfBooks.size(); i++) {
+			if (i > listOfBooks.size())
+				listOfBooks.add(i,livro);
+		}
 	}
 	
 	// ordenar() ordena os objetos Livro presentes na lista em ordem alfabética de título
-	public void sortByAlphabet() {
+	public static void sortByAlphabet() {
 		Collections.sort(listOfBooks);				
 	}
 	//Livro removerDoFim() remove um Livro do final da lista e o retorna
@@ -60,11 +75,10 @@ public class Execucao {
 		
 	}
 	
-	
-	
 	public static void main(String[] args) {
 		System.out.println("Digite a escolha:");
-		String choose = in.next();
+		String choose;
+		choose = in.next();
 
 		while (choose != "n") {
 			System.out.println(" ____________________BIBLIOTECA____________________");
@@ -83,13 +97,6 @@ public class Execucao {
 			switch (option) {
 			case 1:
 				Book livro = new Book();
-				System.out.println("Digite o Titulo, o nome do autor e seu estado, ano de publicação, editora e isbn");
-				livro.setTitle(in.next());
-				livro.setAuthor(new Author(in.next(),in.next()));
-				livro.setAnoPublicacao(in.next());
-				livro.setEditora(in.next());
-				livro.setIsbn(in.next());
-				
 				includeUp(livro);
 				System.out.println("1-Incluído um livro no início da lista");
 				
@@ -107,7 +114,7 @@ public class Execucao {
 				System.out.println("2-Incluído um livro no final da lista ");
 */				break;
 			case 3:
-				
+				sortByAlphabet();
 				System.out.println("3 - Ordenado por título");
 				break;
 			case 4:
@@ -115,13 +122,12 @@ public class Execucao {
 				System.out.println("4 - Último livro removido");
 				break;
 			case 5:
-				sizeOfLibrary();
-				System.out.println("5 - Tamanho da biblioteca é" + "/*value.size()*/" + "livros");
+				
+				System.out.println("5 - Tamanho da biblioteca é" + " " + sizeOfLibrary() + " " + "livros");
 				break;
 			case 6:
 				System.out.println("Insira o número do livro:");
-				get(in.nextInt());
-				System.out.println("Seu livro é:");
+				System.out.println("Seu livro é: " + get(in.nextInt()).toString());
 				break;
 			case 7:
 				System.out.println("Bye !");
