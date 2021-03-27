@@ -1,7 +1,8 @@
 package model;
 
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
+
 import java.util.ArrayList;
 
 public class ListOfBooks {
@@ -35,9 +36,14 @@ public class ListOfBooks {
 	}
 
 	// ordenar() ordena os objetos Livro presentes na lista em ordem alfabética de
-	// título (Meio Funcional, só compara os dois primeiros)
+	// título (Meio Funcional, só compara um com o restante)
+
 	public void sortByAlphabet() {
-		Collections.sort(listOfBooks);
+		listOfBooks.sort(new Comparator<Book>() {
+			public int compare(Book o1, Book o2) {
+				return o1.getTitle().compareTo(o2.getTitle());
+			}
+		});
 	}
 
 	// Livro removerDoFim() remove um Livro do final da lista e o retorna
@@ -112,4 +118,3 @@ public class ListOfBooks {
 		}
 	}
 }
-		

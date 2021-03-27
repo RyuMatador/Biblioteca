@@ -1,17 +1,10 @@
 package aplication;
 
-/*
- 	1. Apresentar os títulos de todos os livros cadastrados em ordem alfabética
-	2. Apresentar os títulos dos livros de um determinado autor
-	3. Apresentar os títulos dos livros publicados em um determinado intervalo de anos (p.ex.: livros publicados entre 2010 e 2015)
-	4. Apresentar título, autor e editora de todos os livros que contém, no seu título, uma palavra ou frase informada pelo usuário.
-*/
-
 import java.util.Scanner;
 
 import model.Book;
 import model.ListOfBooks;
-
+// O TRABALHO FOI DESENVOLVIDO EM GRUPO E FOI CONVENCIONADO ENTRE OS INTEGRANTES O USO DE VARIÁVEIS EM INGLÊS
 public class Execucao {
 	public static Scanner in = new Scanner(System.in);
 	public static ListOfBooks list = new ListOfBooks();
@@ -26,12 +19,12 @@ public class Execucao {
 			System.out.println(" ____________________BIBLIOTECA____________________");
 			System.out.println("|1-Incluir um livro no início                      |"); //Funcional
 			System.out.println("|2-Incluir um livro no final                       |"); //Funcional
-			System.out.println("|3-Ordernar os livros em ordem alfabetica de titulo|"); //Meio funcional, só compara um livro em relação aos outros, não compara todos em relação a todos
+			System.out.println("|3-Ordernar os livros em ordem alfabetica de titulo|"); //Funcional
 			System.out.println("|4-Remover livro do final da lista                 |"); //Funcional
 			System.out.println("|5-Tamanho da biblioteca                           |"); //Funcional
 			System.out.println("|6-Pesquisar um livro pela colocação               |"); //Funcional
 			System.out.println("|7-Mostrar Biblioteca                              |"); //Funcional
-			System.out.println("|8-Mostrar Biblioteca em ordem alfabética          |"); //NF
+			System.out.println("|8-Mostrar Biblioteca em ordem alfabética          |"); //Funcional
 			System.out.println("|9-Pesquisa pelo nome do autor                     |"); //Funcional
 			System.out.println("|10-Pesquisa pelo ano de publicação                |"); //Funcional
 			System.out.println("|11-Pesquisa por caracteres                        |"); //Funcional
