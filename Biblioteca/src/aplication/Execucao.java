@@ -14,7 +14,7 @@ import model.ListOfBooks;
 
 public class Execucao {
 	public static Scanner in = new Scanner(System.in);
-	public static ListOfBooks lista = new ListOfBooks();
+	public static ListOfBooks list = new ListOfBooks();
 
 	public static void main(String[] args) {
 		System.out.println("Digite a escolha:");
@@ -22,15 +22,20 @@ public class Execucao {
 		choose = in.next();
 
 		while (choose != "n") {
+			System.out.println("");
 			System.out.println(" ____________________BIBLIOTECA____________________");
-			System.out.println("|1-Incluir um livro no início                      |");
-			System.out.println("|2-Incluir um livro no final                       |");
-			System.out.println("|3-Ordernar os livros em ordem alfabetica de titulo|");
-			System.out.println("|4-Remover livro do final da lista                 |");
-			System.out.println("|5-Tamanho da biblioteca                           |");
-			System.out.println("|6-Pesquisar um livro                              |");
-			System.out.println("|7-Sair                                            |");
-			System.out.println("|8-Mostrar Biblioteca                              |");
+			System.out.println("|1-Incluir um livro no início                      |"); //Funcional
+			System.out.println("|2-Incluir um livro no final                       |"); //Funcional
+			System.out.println("|3-Ordernar os livros em ordem alfabetica de titulo|"); //Meio funcional, só compara um livro em relação aos outros, não compara todos em relação a todos
+			System.out.println("|4-Remover livro do final da lista                 |"); //Funcional
+			System.out.println("|5-Tamanho da biblioteca                           |"); //Funcional
+			System.out.println("|6-Pesquisar um livro pela colocação               |"); //Funcional
+			System.out.println("|7-Mostrar Biblioteca                              |"); //Funcional
+			System.out.println("|8-Mostrar Biblioteca em ordem alfabética          |"); //NF
+			System.out.println("|9-Pesquisa pelo nome do autor                     |"); //Funcional
+			System.out.println("|10-Pesquisa pelo ano de publicação                |"); //Funcional
+			System.out.println("|11-Pesquisa por caracteres                        |"); //Funcional
+			System.out.println("|12-Sair                                           |"); //Funcional
 			System.out.println("|__________________________________________________|");
 
 			int option = in.nextInt();
@@ -38,42 +43,64 @@ public class Execucao {
 			switch (option) {
 			case 1:
 				Book livro1 = new Book();
-				lista.includeUp(livro1);
+				list.includeUp(livro1);
 				System.out.println("1-Incluído um livro no início da lista");
 				break;
 			case 2:
 				Book livro2 = new Book();
-				lista.includeDown(livro2);
+				list.includeDown(livro2);
+				System.out.println("2-Incluído um livro no final da lista");
 				break;
 			case 3:
-				lista.sortByAlphabet();
+				list.sortByAlphabet();
 				System.out.println("3 - Ordenado por título");
 				break;
 			case 4:
-				lista.removeEnd();
+				list.removeEnd();
 				System.out.println("4 - Último livro removido");
 				break;
 			case 5:
-
-				System.out.println("5 - Tamanho da biblioteca é" + " " + lista.sizeOfLibrary() + " " + "livros");
+				System.out.println("5 - A biblioteca contém " + " " + list.sizeOfLibrary() + " " + "livro(s)");
 				break;
 			case 6:
 				System.out.println("Insira o número do livro:");
-				System.out.println("Seu livro é: " + lista.get(in.nextInt()).toString());
+				System.out.println("Seu livro é: " + list.get(in.nextInt()).toString());
 				break;
 			case 7:
+				System.out.println("Aqui está sua biblioteca");
+				list.showLibrary();
+				break;
+			case 8:
+				System.out.println("Aqui está sua biblioteca em ordem alfabética");
+				list.showLibraryByAlphabetOrder();
+				break;
+			case 9:
+				System.out.println("Digite o nome do autor");
+				String nome = in.next();
+				System.out.println("Resultado da pesquisa por autor:");
+				System.out.println("Livro(s) do autor: " + nome);
+				list.showBookByAuthor(nome);
+				break;
+			case 10:	
+				System.out.println("Insira o ano inicial e final para a pesquisa:");
+				Integer a = in.nextInt();
+				Integer b = in.nextInt();
+				System.out.println("Estes são os livros entre os anos " + a + " e " + b +":");
+				list.showBookByYears(a,b);
+				break;
+			case 11:
+				System.out.println("Insira os um título, uma palavra ou frase para a pesquisa");
+				String frase = in.next();
+				System.out.println("Aqui está o resultado da sua pesquisa: ");
+				list.search(frase);
+				break;
+			case 12:
 				System.out.println("Bye !");
 				choose = "n";
 				break;
-			case 8:
-				System.out.println("Aqui está sua biblioteca");
-				lista.mostraBiblioteca();
-				break;
 			default:
-				System.out.println("Nao existe essa opção, digite uma opcao valida!");
-
+				System.out.println("Não existe essa opção, digite uma opcao valida!");
 			}
 		}
-
 	}
 }
