@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Comparator;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import java.util.ArrayList;
@@ -16,23 +17,34 @@ public class ListOfBooks {
 	// incluirNoInicio(Livro) inclui um Livro no início da lista (Funcional)
 	public void includeUp(Book livro) {
 		System.out.println("Digite o Titulo, o nome do autor e seu estado, ano de publicação, editora e isbn");
-		livro.setTitle(in.next());
-		livro.setAuthor(new Author(in.next(), in.next()));
-		livro.setAnoPublicacao(in.nextInt());
-		livro.setEditora(in.next());
-		livro.setIsbn(in.next());
-		listOfBooks.add(0, livro);
+		try {
+			insertData(livro);
+
+			if (verifyEqualBook(livro) == false) { // Verifica se o livro é igual a outro da lista
+				listOfBooks.add(0, livro);
+				System.out.println("1-Incluído um livro incluído no início da lista");
+			} else
+				throw new BookAlreadyExists("Livro não incluído, pois já existe um igual.");
+		} catch (BookAlreadyExists e) {
+			System.out.println(e.getMessage());
+		} catch (InputMismatchException e) { // Exceção com problema, quando ocorre uma inserção incorreta aparece a mensagem porém não é possível adicionar mais nenhuma livro após isto.
+			System.out.println("Livro não inserido. Verifique se você inseriu as informações corretamente.");
+		}
 	}
 
 	// incluirNoFim(Livro) incluir um Livro no final da lista
 	public void includeDown(Book livro) {
 		System.out.println("Digite o Titulo, o nome do autor e seu estado, ano de publicação, editora e isbn");
-		livro.setTitle(in.next());
-		livro.setAuthor(new Author(in.next(), in.next()));
-		livro.setAnoPublicacao(in.nextInt());
-		livro.setEditora(in.next());
-		livro.setIsbn(in.next());
-		listOfBooks.add(livro);
+		insertData(livro);
+		try {
+			if (verifyEqualBook(livro) == false) { // Verifica se o livro é igual a outro da lista
+				listOfBooks.add(livro);
+				System.out.println("2-Incluído um livro no final da lista");
+			} else
+				throw new BookAlreadyExists("Livro não incluído, pois já existe um igual.");
+		} catch (BookAlreadyExists e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	// ordenar() ordena os objetos Livro presentes na lista em ordem alfabética de
@@ -49,7 +61,16 @@ public class ListOfBooks {
 	// Livro removerDoFim() remove um Livro do final da lista e o retorna
 	// (Funcional)
 	public Book removeEnd() {
-		Book livro = listOfBooks.remove(sizeOfLibrary() - 1);
+		Book livro = new Book();
+		try {
+			if (listOfBooks.size() > 0) {
+				listOfBooks.remove(sizeOfLibrary() - 1);
+				System.out.println("4 - Último livro removido");
+			} else
+				throw new BookNotFound("Livro não removido, pois a biblioteca está vazia.");
+		} catch (BookNotFound e) {
+			System.out.println(e.getMessage());
+		}
 		return livro;
 	}
 
@@ -69,9 +90,12 @@ public class ListOfBooks {
 
 	// Mostra a lista de livros (Funcional)
 	public void showLibrary() {
-		for (Book book : listOfBooks) {
-			System.out.println(book);
-		}
+		if (listOfBooks.size() > 0) {
+			for (Book book : listOfBooks) {
+				System.out.println(book);
+			}
+		} else
+			System.out.println("Biblioteca vazia");
 	}
 
 	// 1. Apresentar os títulos de todos os livros cadastrados em ordem alfabética
@@ -116,5 +140,21 @@ public class ListOfBooks {
 				System.out.println(book.getEditora());
 			}
 		}
+	}
+
+	public boolean verifyEqualBook(Book book) {
+		for (Book otherBook : listOfBooks) {
+			if (book.equals(otherBook) == true)
+				return true;
+		}
+		return false;
+	}
+
+	public void insertData(Book livro) {
+		livro.setTitle(in.next());
+		livro.setAuthor(new Author(in.next(), in.next()));
+		livro.setAnoPublicacao(in.nextInt());
+		livro.setEditora(in.next());
+		livro.setIsbn(in.next());
 	}
 }

@@ -67,28 +67,7 @@ public class Book implements Comparable<Book>{
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
 		Book other = (Book) obj;
-		if (anoPublicacao == null) {
-			if (other.anoPublicacao != null)
-				return false;
-		} else if (!anoPublicacao.equals(other.anoPublicacao))
-			return false;
-		if (author == null) {
-			if (other.author != null)
-				return false;
-		} else if (!author.equals(other.author))
-			return false;
-		if (editora == null) {
-			if (other.editora != null)
-				return false;
-		} else if (!editora.equals(other.editora))
-			return false;
 		if (isbn == null) {
 			if (other.isbn != null)
 				return false;
