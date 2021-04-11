@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class ListOfBooks {
 	private static ArrayList<Book> listOfBooks = new ArrayList<Book>();
-	Scanner in = new Scanner(System.in);
 
 	public ArrayList<Book> getListOfBooks() {
 		return listOfBooks;
@@ -19,16 +18,15 @@ public class ListOfBooks {
 		System.out.println("Digite o Titulo, o nome do autor e seu estado, ano de publicação, editora e isbn");
 		try {
 			insertData(livro);
-
 			if (verifyEqualBook(livro) == false) { // Verifica se o livro é igual a outro da lista
 				listOfBooks.add(0, livro);
 				System.out.println("1-Incluído um livro incluído no início da lista");
 			} else
-				throw new BookAlreadyExists("Livro não incluído, pois já existe um igual.");
+				throw new BookAlreadyExists("Livro não incluído, pois já existe um com o mesmo título e isbn.");
 		} catch (BookAlreadyExists e) {
 			System.out.println(e.getMessage());
-		} catch (InputMismatchException e) { // Exceção com problema, quando ocorre uma inserção incorreta aparece a mensagem porém não é possível adicionar mais nenhuma livro após isto.
-			System.out.println("Livro não inserido. Verifique se você inseriu as informações corretamente.");
+		} catch (InputMismatchException e) { 
+			System.out.println("Livro não inserido. Verifique se você inseriu as informações corretamente. Ex.: Inseriu letras no campo ano.");
 		}
 	}
 
@@ -41,9 +39,11 @@ public class ListOfBooks {
 				listOfBooks.add(livro);
 				System.out.println("2-Incluído um livro no final da lista");
 			} else
-				throw new BookAlreadyExists("Livro não incluído, pois já existe um igual.");
+				throw new BookAlreadyExists("Livro não incluído, pois já existe um com o mesmo título e isbn.");
 		} catch (BookAlreadyExists e) {
 			System.out.println(e.getMessage());
+		} catch (InputMismatchException e) { 
+			System.out.println("Livro não inserido. Verifique se você inseriu as informações corretamente. Ex.: Inseriu letras no campo ano.");
 		}
 	}
 
@@ -151,10 +151,11 @@ public class ListOfBooks {
 	}
 
 	public void insertData(Book livro) {
-		livro.setTitle(in.next());
-		livro.setAuthor(new Author(in.next(), in.next()));
-		livro.setAnoPublicacao(in.nextInt());
-		livro.setEditora(in.next());
-		livro.setIsbn(in.next());
+		Scanner scan = new Scanner(System.in);
+		livro.setTitle(scan.next());
+		livro.setAuthor(new Author(scan.next(), scan.next()));
+		livro.setAnoPublicacao(scan.nextInt());
+		livro.setEditora(scan.next());
+		livro.setIsbn(scan.next());
 	}
 }
