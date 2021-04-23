@@ -15,7 +15,7 @@ public class ListOfBooks {
 
 	// incluirNoInicio(Livro) inclui um Livro no início da lista (Funcional)
 	public void includeUp(Book livro) {
-		System.out.println("Digite o Titulo, o nome do autor e seu estado, ano de publicação, editora e isbn");
+		System.out.println("Digite o Titulo, o nome do autor e seu estado, editora, isbn e  ano de publicação");
 		try {
 			insertData(livro);
 			if (verifyEqualBook(livro) == false) { // Verifica se o livro é igual a outro da lista
@@ -32,7 +32,7 @@ public class ListOfBooks {
 
 	// incluirNoFim(Livro) incluir um Livro no final da lista
 	public void includeDown(Book livro) {
-		System.out.println("Digite o Titulo, o nome do autor e seu estado, ano de publicação, editora e isbn");
+		System.out.println("Digite o Titulo, o nome do autor e seu estado, editora, isbn e  ano de publicação");
 		insertData(livro);
 		try {
 			if (verifyEqualBook(livro) == false) { // Verifica se o livro é igual a outro da lista
@@ -152,10 +152,10 @@ public class ListOfBooks {
 
 	public void insertData(Book livro) {
 		Scanner scan = new Scanner(System.in);
-		livro.setTitle(scan.next());
-		livro.setAuthor(new Author(scan.next(), scan.next()));
+		livro.setTitle(scan.nextLine());
+		livro.setAuthor(new Author(scan.nextLine(), scan.nextLine()));
+		livro.setEditora(scan.nextLine());
+		livro.setIsbn(scan.nextLine());
 		livro.setAnoPublicacao(scan.nextInt());
-		livro.setEditora(scan.next());
-		livro.setIsbn(scan.next());
 	}
 }
